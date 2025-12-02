@@ -1,0 +1,14 @@
+{
+  "items": [],
+  "totalResults": 0,
+  "resultContext": null,
+  "skip": 0,
+  "take": 0,
+  "links": [
+    {
+      "rel": "self",
+      "href": "StateOfTheParties/Commons/01/06/2017 00:00:00",
+      "method": "GET"
+    }
+  ]
+}

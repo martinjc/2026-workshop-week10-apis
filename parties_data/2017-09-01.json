@@ -1,0 +1,215 @@
+{
+  "items": [
+    {
+      "value": {
+        "male": 250,
+        "female": 66,
+        "nonBinary": 0,
+        "total": 316,
+        "party": {
+          "id": 4,
+          "name": "Conservative",
+          "abbreviation": "Con",
+          "backgroundColour": "0063ba",
+          "foregroundColour": "ffffff",
+          "isLordsMainParty": true,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 143,
+        "female": 119,
+        "nonBinary": 0,
+        "total": 262,
+        "party": {
+          "id": 15,
+          "name": "Labour",
+          "abbreviation": "Lab",
+          "backgroundColour": "d50000",
+          "foregroundColour": "ffffff",
+          "isLordsMainParty": true,
+          "isLordsSpiritualParty": true,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 23,
+        "female": 12,
+        "nonBinary": 0,
+        "total": 35,
+        "party": {
+          "id": 29,
+          "name": "Scottish National Party",
+          "abbreviation": "SNP",
+          "backgroundColour": "fff685",
+          "foregroundColour": "000000",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 8,
+        "female": 4,
+        "nonBinary": 0,
+        "total": 12,
+        "party": {
+          "id": 17,
+          "name": "Liberal Democrat",
+          "abbreviation": "LD",
+          "backgroundColour": "faa01a",
+          "foregroundColour": "FFFFFF",
+          "isLordsMainParty": true,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 9,
+        "female": 1,
+        "nonBinary": 0,
+        "total": 10,
+        "party": {
+          "id": 7,
+          "name": "Democratic Unionist Party",
+          "abbreviation": "DUP",
+          "backgroundColour": "d46a4c",
+          "foregroundColour": "FFFFFF",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": true,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 5,
+        "female": 2,
+        "nonBinary": 0,
+        "total": 7,
+        "party": {
+          "id": 30,
+          "name": "Sinn Féin",
+          "abbreviation": "SF",
+          "backgroundColour": "02665f",
+          "foregroundColour": "FFFFFF",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 3,
+        "female": 1,
+        "nonBinary": 0,
+        "total": 4,
+        "party": {
+          "id": 22,
+          "name": "Plaid Cymru",
+          "abbreviation": "PC",
+          "backgroundColour": "348837",
+          "foregroundColour": "ffffff",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 0,
+        "female": 2,
+        "nonBinary": 0,
+        "total": 2,
+        "party": {
+          "id": 8,
+          "name": "Independent",
+          "abbreviation": "Ind",
+          "backgroundColour": "909090",
+          "foregroundColour": "FFFFFF",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": true
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 0,
+        "female": 1,
+        "nonBinary": 0,
+        "total": 1,
+        "party": {
+          "id": 44,
+          "name": "Green Party",
+          "abbreviation": "Green",
+          "backgroundColour": "78b82a",
+          "foregroundColour": "FFFFFF",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 1,
+        "female": 0,
+        "nonBinary": 0,
+        "total": 1,
+        "party": {
+          "id": 47,
+          "name": "Speaker",
+          "abbreviation": "Spk",
+          "backgroundColour": null,
+          "foregroundColour": null,
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    }
+  ],
+  "totalResults": 0,
+  "resultContext": null,
+  "skip": 0,
+  "take": 0,
+  "links": [
+    {
+      "rel": "self",
+      "href": "StateOfTheParties/Commons/01/09/2017 00:00:00",
+      "method": "GET"
+    }
+  ]
+}

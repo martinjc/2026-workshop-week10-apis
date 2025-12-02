@@ -1,0 +1,275 @@
+{
+  "items": [
+    {
+      "value": {
+        "male": 377,
+        "female": 14,
+        "nonBinary": 0,
+        "total": 391,
+        "party": {
+          "id": 4,
+          "name": "Conservative",
+          "abbreviation": "Con",
+          "backgroundColour": "0063ba",
+          "foregroundColour": "ffffff",
+          "isLordsMainParty": true,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 196,
+        "female": 12,
+        "nonBinary": 0,
+        "total": 208,
+        "party": {
+          "id": 15,
+          "name": "Labour",
+          "abbreviation": "Lab",
+          "backgroundColour": "d50000",
+          "foregroundColour": "ffffff",
+          "isLordsMainParty": true,
+          "isLordsSpiritualParty": true,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 17,
+        "female": 1,
+        "nonBinary": 0,
+        "total": 18,
+        "party": {
+          "id": 16,
+          "name": "Liberal",
+          "abbreviation": "Lib",
+          "backgroundColour": "eb7a43",
+          "foregroundColour": "FFFFFF",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 10,
+        "female": 0,
+        "nonBinary": 0,
+        "total": 10,
+        "party": {
+          "id": 38,
+          "name": "Ulster Unionist Party",
+          "abbreviation": "UUP",
+          "backgroundColour": "a1cdf0",
+          "foregroundColour": "FFFFFF",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": true,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 7,
+        "female": 1,
+        "nonBinary": 0,
+        "total": 8,
+        "party": {
+          "id": 32,
+          "name": "Social Democratic Party",
+          "abbreviation": "SDP",
+          "backgroundColour": "c33350",
+          "foregroundColour": "FFFFFF",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 3,
+        "female": 0,
+        "nonBinary": 0,
+        "total": 3,
+        "party": {
+          "id": 7,
+          "name": "Democratic Unionist Party",
+          "abbreviation": "DUP",
+          "backgroundColour": "d46a4c",
+          "foregroundColour": "FFFFFF",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": true,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 2,
+        "female": 0,
+        "nonBinary": 0,
+        "total": 2,
+        "party": {
+          "id": 22,
+          "name": "Plaid Cymru",
+          "abbreviation": "PC",
+          "backgroundColour": "348837",
+          "foregroundColour": "ffffff",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 2,
+        "female": 0,
+        "nonBinary": 0,
+        "total": 2,
+        "party": {
+          "id": 29,
+          "name": "Scottish National Party",
+          "abbreviation": "SNP",
+          "backgroundColour": "fff685",
+          "foregroundColour": "000000",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 2,
+        "female": 0,
+        "nonBinary": 0,
+        "total": 2,
+        "party": {
+          "id": 31,
+          "name": "Social Democratic & Labour Party",
+          "abbreviation": "SDLP",
+          "backgroundColour": "4ea268",
+          "foregroundColour": "000000",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 1,
+        "female": 0,
+        "nonBinary": 0,
+        "total": 1,
+        "party": {
+          "id": 10,
+          "name": "Independent Labour",
+          "abbreviation": "Ind Lab",
+          "backgroundColour": "FF0000",
+          "foregroundColour": "FFFFFF",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 1,
+        "female": 0,
+        "nonBinary": 0,
+        "total": 1,
+        "party": {
+          "id": 30,
+          "name": "Sinn Féin",
+          "abbreviation": "SF",
+          "backgroundColour": "02665f",
+          "foregroundColour": "FFFFFF",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 1,
+        "female": 0,
+        "nonBinary": 0,
+        "total": 1,
+        "party": {
+          "id": 47,
+          "name": "Speaker",
+          "abbreviation": "Spk",
+          "backgroundColour": null,
+          "foregroundColour": null,
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    },
+    {
+      "value": {
+        "male": 1,
+        "female": 0,
+        "nonBinary": 0,
+        "total": 1,
+        "party": {
+          "id": 36,
+          "name": "Ulster Popular Unionist Party",
+          "abbreviation": "UPUP",
+          "backgroundColour": "C0C0C0",
+          "foregroundColour": "FFFFFF",
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    }
+  ],
+  "totalResults": 0,
+  "resultContext": null,
+  "skip": 0,
+  "take": 0,
+  "links": [
+    {
+      "rel": "self",
+      "href": "StateOfTheParties/Commons/01/03/1987 00:00:00",
+      "method": "GET"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "items": [
+    {
+      "value": {
+        "male": 1,
+        "female": 0,
+        "nonBinary": 0,
+        "total": 1,
+        "party": {
+          "id": 47,
+          "name": "Speaker",
+          "abbreviation": "Spk",
+          "backgroundColour": null,
+          "foregroundColour": null,
+          "isLordsMainParty": false,
+          "isLordsSpiritualParty": false,
+          "governmentType": null,
+          "isIndependentParty": false
+        }
+      },
+      "links": []
+    }
+  ],
+  "totalResults": 0,
+  "resultContext": null,
+  "skip": 0,
+  "take": 0,
+  "links": [
+    {
+      "rel": "self",
+      "href": "StateOfTheParties/Commons/01/12/2019 00:00:00",
+      "method": "GET"
+    }
+  ]
+}

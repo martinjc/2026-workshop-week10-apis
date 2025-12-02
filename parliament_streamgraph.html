@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK Parliament Party Composition - Streamgraph</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        #container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        #chart {
+            position: relative;
+        }
+        
+        .tooltip {
+            position: absolute;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 10;
+        }
+        
+        .tooltip.visible {
+            opacity: 1;
+        }
+        
+        .legend {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+        
+        .axis-label {
+            font-size: 14px;
+            fill: #333;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>UK Parliament Party Composition Over Time</h1>
+        <p class="subtitle">Number of MPs by Party (1970 - Present)</p>
+        <div id="chart">
+            <div class="loading">Loading data...</div>
+        </div>
+        <div class="legend" id="legend"></div>
+    </div>
+
+    <script>
+        // Configuration
+        const margin = {top: 40, right: 120, bottom: 60, left: 80};
+        const width = 1360 - margin.left - margin.right;
+        const height = 600 - margin.top - margin.bottom;
+
+        // Load all data files
+        async function loadData() {
+            const dataFiles = [];
+            const startYear = 1970;
+            const currentDate = new Date();
+            const endYear = currentDate.getFullYear();
+            const endMonth = currentDate.getMonth() + 1;
+
+            // Generate list of files to load
+            for (let year = startYear; year <= endYear; year++) {
+                const maxMonth = (year === endYear) ? endMonth : 12;
+                for (let month = 1; month <= maxMonth; month++) {
+                    const dateStr = `${year}-${String(month).padStart(2, '0')}-01`;
+                    dataFiles.push(dateStr);
+                }
+            }
+
+            // Load all files
+            const promises = dataFiles.map(async (dateStr) => {
+                try {
+                    const response = await fetch(`parties_data/${dateStr}.json`);
+                    if (!response.ok) return null;
+                    const data = await response.json();
+                    return { date: dateStr, data: data };
+                } catch (error) {
+                    console.warn(`Failed to load ${dateStr}:`, error);
+                    return null;
+                }
+            });
+
+            const results = await Promise.all(promises);
+            return results.filter(r => r !== null);
+        }
+
+        // Process data into format suitable for streamgraph
+        function processData(rawData) {
+            const partyMap = new Map();
+            const dates = [];
+
+            rawData.forEach(entry => {
+                const date = new Date(entry.date);
+                dates.push(date);
+
+                entry.data.items.forEach(item => {
+                    const partyName = item.value.party.name;
+                    const partyId = item.value.party.id;
+                    const total = item.value.total;
+                    const color = item.value.party.backgroundColour;
+
+                    if (!partyMap.has(partyId)) {
+                        partyMap.set(partyId, {
+                            id: partyId,
+                            name: partyName,
+                            color: color ? `#${color}` : '#999999',
+                            values: []
+                        });
+                    }
+
+                    partyMap.get(partyId).values.push({
+                        date: date,
+                        value: total
+                    });
+                });
+            });
+
+            // Convert to array and fill missing values with last known value
+            const parties = Array.from(partyMap.values());
+            
+            // For each party, ensure we have a value for every date
+            parties.forEach(party => {
+                const valueMap = new Map(party.values.map(v => [v.date.getTime(), v.value]));
+                let lastValue = 0;
+                party.values = dates.map(date => {
+                    const value = valueMap.get(date.getTime());
+                    if (value !== undefined) {
+                        lastValue = value;
+                        return { date: date, value: value };
+                    } else {
+                        return { date: date, value: lastValue };
+                    }
+                });
+            });
+
+            // Sort parties by maximum value (largest parties first)
+            parties.sort((a, b) => {
+                const maxA = Math.max(...a.values.map(v => v.value));
+                const maxB = Math.max(...b.values.map(v => v.value));
+                return maxB - maxA;
+            });
+
+            return parties;
+        }
+
+        // Create streamgraph
+        async function createStreamgraph() {
+            const rawData = await loadData();
+            if (rawData.length === 0) {
+                document.querySelector('.loading').textContent = 'No data available';
+                return;
+            }
+
+            const parties = processData(rawData);
+            
+            // Clear loading message
+            document.getElementById('chart').innerHTML = '';
+
+            // Create SVG
+            const svg = d3.select('#chart')
+                .append('svg')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', `translate(${margin.left},${margin.top})`);
+
+            // Create tooltip
+            const tooltip = d3.select('#chart')
+                .append('div')
+                .attr('class', 'tooltip');
+
+            // Prepare data for stack
+            const dates = parties[0].values.map(v => v.date);
+            const stackData = dates.map((date, i) => {
+                const obj = { date: date };
+                parties.forEach(party => {
+                    obj[party.id] = party.values[i].value;
+                });
+                return obj;
+            });
+
+            // Create stack
+            const keys = parties.map(p => p.id);
+            const stack = d3.stack()
+                .keys(keys)
+                .offset(d3.stackOffsetWiggle)
+                .order(d3.stackOrderInsideOut);
+
+            const series = stack(stackData);
+
+            // Scales
+            const x = d3.scaleTime()
+                .domain(d3.extent(dates))
+                .range([0, width]);
+
+            const y = d3.scaleLinear()
+                .domain([
+                    d3.min(series, s => d3.min(s, d => d[0])),
+                    d3.max(series, s => d3.max(s, d => d[1]))
+                ])
+                .range([height, 0]);
+
+            // Area generator
+            const area = d3.area()
+                .x((d, i) => x(d.data.date))
+                .y0(d => y(d[0]))
+                .y1(d => y(d[1]))
+                .curve(d3.curveBasis);
+
+            // Color scale
+            const colorMap = new Map(parties.map(p => [p.id, p.color]));
+
+            // Draw streams
+            svg.selectAll('.stream')
+                .data(series)
+                .enter()
+                .append('path')
+                .attr('class', 'stream')
+                .attr('d', area)
+                .attr('fill', d => colorMap.get(d.key))
+                .attr('opacity', 0.8)
+                .on('mouseover', function(event, d) {
+                    d3.select(this)
+                        .attr('opacity', 1)
+                        .attr('stroke', '#000')
+                        .attr('stroke-width', 1);
+                })
+                .on('mousemove', function(event, d) {
+                    const party = parties.find(p => p.id == d.key);
+                    const [mx, my] = d3.pointer(event, this);
+                    const date = x.invert(mx);
+                    
+                    // Find closest data point
+                    const bisect = d3.bisector(d => d.date).left;
+                    const idx = bisect(dates, date);
+                    const value = party.values[idx]?.value || 0;
+
+                    tooltip
+                        .classed('visible', true)
+                        .html(`
+                            <strong>${party.name}</strong><br/>
+                            Date: ${dates[idx]?.toLocaleDateString('en-GB', { year: 'numeric', month: 'short' }) || 'N/A'}<br/>
+                            MPs: ${value}
+                        `)
+                        .style('left', (event.pageX + 10) + 'px')
+                        .style('top', (event.pageY - 10) + 'px');
+                })
+                .on('mouseout', function() {
+                    d3.select(this)
+                        .attr('opacity', 0.8)
+                        .attr('stroke', 'none');
+                    tooltip.classed('visible', false);
+                });
+
+            // X axis
+            const xAxis = d3.axisBottom(x)
+                .ticks(d3.timeYear.every(5))
+                .tickFormat(d3.timeFormat('%Y'));
+
+            svg.append('g')
+                .attr('transform', `translate(0,${height})`)
+                .call(xAxis)
+                .selectAll('text')
+                .style('font-size', '12px');
+
+            // X axis label
+            svg.append('text')
+                .attr('class', 'axis-label')
+                .attr('text-anchor', 'middle')
+                .attr('x', width / 2)
+                .attr('y', height + 45)
+                .text('Year');
+
+            // Y axis label
+            svg.append('text')
+                .attr('class', 'axis-label')
+                .attr('text-anchor', 'middle')
+                .attr('transform', 'rotate(-90)')
+                .attr('x', -height / 2)
+                .attr('y', -60)
+                .text('Number of MPs');
+
+            // Create legend
+            const legend = d3.select('#legend');
+            parties.forEach(party => {
+                const item = legend.append('div')
+                    .attr('class', 'legend-item');
+                
+                item.append('div')
+                    .attr('class', 'legend-color')
+                    .style('background-color', party.color);
+                
+                item.append('span')
+                    .text(party.name);
+            });
+        }
+
+        // Initialize
+        createStreamgraph();
+    </script>
+</body>
+</html>
